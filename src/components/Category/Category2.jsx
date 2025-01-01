@@ -30,7 +30,7 @@ const Category = () => {
                 <Button text="Browse" bgColor="bg-white" textColor="text-brandGreen"/>
               </div>
             </div>
-            <img className='w-[320px] absolute bottom-0' src={Image2} alt="Earphones" />
+            <img className='w-[320px] absolute bottom-0 left-0 right-0' src={Image2} alt="Earphones" />
           </div>
 
           <div className='py-10 pl-5 bg-gradient-to-br from-brandBlue to-brandBlue/90 text-white rounded-3xl relative h-[320px] flex items-start '>
@@ -42,6 +42,7 @@ const Category = () => {
                 <Button text="Browse" bgColor="bg-white" textColor="text-brandBlue"/>
               </div>
             </div>
+            <img className='w-[320px] absolute bottom-[-3px] left-0 right-0' src={Image3} alt="Earphones" />
           </div>
 
   

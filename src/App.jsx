@@ -3,6 +3,7 @@ import Category from './components/Category/Category'
 import Category2 from './components/Category/Category2'
 import Hero from './components/Hero/Hero'
 import Navbar from './components/Navbar/Navbar'
+import Services from './components/Services/Services'
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <Hero/>
       <Category/>
       <Category2/>
+      <Services/>
     </div>
   )
 }

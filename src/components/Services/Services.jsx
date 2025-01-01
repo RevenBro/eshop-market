@@ -37,8 +37,8 @@ const Services = () => {
                     <div className='flex flex-col items-start sm:flex-row gap-4'>
                         {data.icon}
                         <div className=''>
-                            <h1 className='lg:text-xl font-bold'>{data.title}</h1>
-                            <p className='text-gray-400 text-sm'>{data.description}</p>
+                            <h1 className='lg:text-[1rem] font-bold'>{data.title}</h1>
+                            <p className='text-gray-400 text-[0.8rem]'>{data.description}</p>
                         </div>
 
                     </div>    
