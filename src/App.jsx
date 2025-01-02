@@ -6,6 +6,7 @@ import Hero from './components/Hero/Hero'
 import Navbar from './components/Navbar/Navbar'
 import Services from './components/Services/Services'
 import Headphone from './assets/Images/headphone.png'
+import Products from './components/Products/Products'
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
       <Category2/>
       <Services/>
       <Banner data={BannerData}/>
+      <Products/>
     </div>
   )
 }

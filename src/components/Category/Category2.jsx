@@ -2,7 +2,7 @@ import React from 'react'
 import Image1 from '../../assets/Images/gaming.png'
 import Image2 from '../../assets/Images/vr.png'
 import Image3 from '../../assets/Images/speaker.png'
-import Button from '../ButtonShared/Button'
+import Button from '../Shared/Button'
 
 const Category = () => {
   return (
