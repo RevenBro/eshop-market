@@ -10,6 +10,7 @@ import Products from './components/Products/Products'
 import Headphone from './assets/Images/headphone.png'
 import smartwatch2 from './assets/Images/smartwatch2-removebg-preview.png'
 import Blogs from './components/Blogs/Blogs'
+import Partners from './components/Partners/Partners'
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
       <Products/>
       <Banner data={BannerData2}/>
       <Blogs/>
+      <Partners/>
     </div>
   )
 }
