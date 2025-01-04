@@ -11,6 +11,7 @@ import Headphone from './assets/Images/headphone.png'
 import smartwatch2 from './assets/Images/smartwatch2-removebg-preview.png'
 import Blogs from './components/Blogs/Blogs'
 import Partners from './components/Partners/Partners'
+import Footer from './components/Footer/Footer'
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
       <Banner data={BannerData2}/>
       <Blogs/>
       <Partners/>
+      <Footer/>
     </div>
   )
 }
