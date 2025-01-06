@@ -33,7 +33,7 @@ const Category = () => {
             <img className='w-[320px] absolute -right-4 lg:top-[40px]' src={Image2} alt="Smart watches" />
           </div>
 
-          <div className='col-span-2 py-10 pl-5 bg-gradient-to-br from-primary to-primary/90 text-white rounded-3xl relative h-[320px] flex items-end '>
+          <div className='sm:col-span-2 py-10 pl-5 bg-gradient-to-br from-primary to-primary/90 text-white rounded-3xl relative h-[320px] flex items-end '>
             <div >
               <div className='mb-4'>
                 <p className='mb-[2px] text-white'>Enjoy</p>
