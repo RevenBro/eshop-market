@@ -6,17 +6,21 @@ import Button from '../Shared/Button'
 
 const Hero = () => {
 
-  const settings = {
-    dots: false,
-    arrows: false,
-    infinite: true,
-    speed: 800,
-    slidesToScroll: 1,
-    autoplaySpeed: 4000,
-    cssEase: "ease-in-out",
-    pauseOnHover: false,
-    pauseOnFocus: true
-  }
+    const settings = {
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 800,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        cssEase: "ease-in-out",
+        pauseOnHover: false,
+        pauseOnFocus: true,
+      };
+      
+      
 
   const HeroData = [
     {
@@ -45,7 +49,7 @@ const Hero = () => {
     <div className='container'>
         <div className='overflow-hidden rounded-3xl min-h-[550px] sm:min-h-[650px] hero-bg-color flex justify-center items-center '>
 
-            <div className='container pb-8 sm:pb-0 '>
+            <div className='container pb-8 sm:pb-0'>
                 <Slider {...settings}>
                     {HeroData.map((item) => (
                         <div key={item.id}>
