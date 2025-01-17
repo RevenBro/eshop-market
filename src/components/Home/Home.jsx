@@ -36,8 +36,6 @@ const Home = () => {
     bgColor: "#2dcc6f",
   }
 
-
-
   return (
     <main>
       <Hero/>
