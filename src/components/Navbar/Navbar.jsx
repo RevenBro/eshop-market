@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoMdSearch } from 'react-icons/io'
 import DarkMode from '../DarkMode'
 import { FaCaretDown } from 'react-icons/fa'
+import RegisterButton from '../RegisterButton/RegisterButton'
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "../../Firebase/Firebase";
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate()
 
     const MenuLinks = [
         {
@@ -21,11 +28,11 @@ const Navbar = () => {
             name: "About",
             link: "/about"
         },
-        {
-            id: 4,
-            name: "Blogs",
-            link: "/blogs"
-        },
+        // {
+        //     id: 4,
+        //     name: "Blogs",
+        //     link: "/blogs"
+        // },
     ]
 
     const DropdownLinks = [
@@ -50,6 +57,15 @@ const Navbar = () => {
             link: "/#"
         },
     ]
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+          setUser(currentUser);
+        });
+    
+        return () => unsubscribe();
+      }, []);
+
   return (
     <div className='bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40'>
         <div className='py-4'>
@@ -99,6 +115,18 @@ const Navbar = () => {
                     
                     <div>
                         <DarkMode/>
+                    </div>
+                    <div>
+                        {user ? (
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <span style={{ marginRight: "10px", fontWeight: "bold" }}>
+                                {user.email[0].toUpperCase()}
+                                </span>
+                                <button onClick={() => auth.signOut()}>Logout</button>
+                            </div>
+                        ) : (
+                        <RegisterButton onClick={navigate('/login')}/>
+                        )}
                     </div>
                 </div>
             </div>
