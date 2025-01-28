@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginNew = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => setIsSubmitting(false), 2000); // Loading animation uchun
+    setTimeout(() => setIsSubmitting(false), 2000);
   };
 
   return (
@@ -34,13 +36,19 @@ const LoginNew = () => {
           </div>
           <div className="relative">
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               className="w-full px-4 py-3 rounded-lg bg-transparent border border-white text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              placeholder="Parol"
-            />
+              placeholder="Parol"/>
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-3 flex items-center text-white hover:text-slate-200"
+              >
+                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+              </button>
           </div>
           <motion.button
             type="submit"

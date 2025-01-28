@@ -5,6 +5,8 @@ import { FaCaretDown } from 'react-icons/fa'
 import RegisterButton from '../RegisterButton/RegisterButton'
 import { useNavigate } from 'react-router-dom'
 
+import UserProfile from '../UserProfile/UserProfile'
+
 const Navbar = ({user}) => {
 
     const MenuLinks = [
@@ -105,12 +107,7 @@ const Navbar = ({user}) => {
                     </div>
                     <div>
                         {user ? (
-                            <div style={{ display: "flex", alignItems: "center" }}>
-                                <span style={{ marginRight: "10px", fontWeight: "bold" }}>
-                                {user.email[0].toUpperCase()}
-                                </span>
-                                <button onClick={() => auth.signOut()}>Logout</button>
-                            </div>
+                            <UserProfile/>
                         ) : (
                         <RegisterButton/>
                         )}

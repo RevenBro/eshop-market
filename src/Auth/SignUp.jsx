@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Eye, EyeOff } from "lucide-react";
 
 const LoginNew = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -53,8 +55,7 @@ const LoginNew = () => {
               onChange={(e) => setPassword(e.target.value)}
               required
               className="w-full px-4 py-3 rounded-lg bg-transparent border border-white text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              placeholder="Parol"
-            />
+              placeholder="Parol"/>
           </div>
 
           <div className="relative ">
