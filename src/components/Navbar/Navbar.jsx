@@ -7,7 +7,9 @@ import { useNavigate } from 'react-router-dom'
 
 import UserProfile from '../UserProfile/UserProfile'
 
-const Navbar = ({user}) => {
+const Navbar = ({loggedIn, username}) => {
+
+    console.log(username)
 
     const MenuLinks = [
         {
@@ -106,7 +108,7 @@ const Navbar = ({user}) => {
                         <DarkMode/>
                     </div>
                     <div>
-                        {user ? (
+                        {loggedIn ? (
                             <UserProfile/>
                         ) : (
                         <RegisterButton/>

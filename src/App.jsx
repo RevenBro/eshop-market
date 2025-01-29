@@ -18,6 +18,7 @@ function App() {
   const auth = getAuth()
   const location = useLocation()
   const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
   const isLoginPage = location.pathname === '/login' || location.pathname === '/signup';
 
   useEffect(() => {
@@ -43,13 +44,13 @@ function App() {
 
   return (
     <div className='bg-white dark:bg-gray-900 dark:text-white duration-200 overflow-hidden'>
-      {!isLoginPage && <Navbar/>}
+      {!isLoginPage && <Navbar loggedIn={loggedIn} username={username}/>}
 
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/shop' element={<ProductsShop/>}/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/signup' element={<SignUp username={username} setUsername={setUsername}/>}/>
       </Routes>
 
       {!isLoginPage && <Footer/>}
