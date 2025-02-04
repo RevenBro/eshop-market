@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
-import '../firebase/config'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -17,11 +15,15 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage('');
 
-    signInWithEmailAndPassword(getAuth(), email, password).then(() => alert("Successfully")).catch((e) => e.error)
+    // Fake login logic
     setTimeout(() => {
-      navigate("/")
-    }, 500)
+      setIsSubmitting(false);
+      if (email !== 'test@example.com' || password !== 'password123') {
+        setErrorMessage('Noto‘g‘ri email yoki parol.');
+      }
+    }, 2000);
   };
 
   return (
@@ -69,7 +71,7 @@ const Login = () => {
             className="w-full py-3 mt-4 rounded-lg bg-gradient-to-r from-teal-400 to-blue-600 text-white font-bold transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-          isSubmitting
+            disabled={isSubmitting}
           >
             {isSubmitting ? (
               <div className='flex justify-center items-center'>
