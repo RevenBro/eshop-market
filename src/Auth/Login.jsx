@@ -14,15 +14,17 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-    signInWithEmailAndPassword(getAuth(), email, password).then(() => alert("Successfully")).catch((e) => e.error)
-    setTimeout(() => {
-      navigate("/")
-    }, 500)
+    try {
+      await signInWithEmailAndPassword(getAuth(), email, password);
+      alert("Successfully");
+      navigate("/");
+    } catch (error) {
+      alert("Email yoki parol xato");
+    }
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
