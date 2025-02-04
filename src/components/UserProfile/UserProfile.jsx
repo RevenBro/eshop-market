@@ -1,9 +1,20 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { LogOut, Settings, Sparkles, User } from "lucide-react";
+import '../../firebase/config'
+import {getAuth, signOut} from 'firebase/auth'
 
 const Menu = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleLogout = () => {
+    console.log("Logging out...");
+    setIsOpen(false);
+
+    setTimeout(() => {
+      signOut(getAuth()).then(() => alert("Logged out")).catch((e) => alert(e.error))
+    }, 800)
+  };
 
   return (
     <div className="relative">
@@ -21,12 +32,11 @@ const Menu = () => {
           className="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
         >
           <ul className="py-2">
-            <MenuItem icon={<User size={18} />} label="My GPTs" />
-            <MenuItem icon={<Sparkles size={18} />} label="Customize ChatGPT" />
+            <MenuItem icon={<User size={18} />} label="My Account" />
+            <MenuItem icon={<Sparkles size={18} />} label="Customize" />
             <MenuItem icon={<Settings size={18} />} label="Settings" />
-            <MenuItem icon={<Sparkles size={18} />} label="Upgrade Plan" />
             <div className="border-t border-gray-200 my-1"></div>
-            <MenuItem icon={<LogOut size={18} />} label="Log out" isDanger />
+            <MenuItem icon={<LogOut size={18} />} label="Log out" isDanger onClick={handleLogout} />
           </ul>
         </motion.div>
       )}
@@ -34,10 +44,11 @@ const Menu = () => {
   );
 };
 
-const MenuItem = ({ icon, label, isDanger }) => {
+const MenuItem = ({ icon, label, isDanger, onClick }) => {
   return (
     <li>
       <button
+        onClick={onClick}
         className={`flex items-center gap-3 w-full px-4 py-2 text-sm font-medium ${
           isDanger ? "text-red-500 hover:bg-red-50" : "text-gray-700 hover:bg-gray-100"
         } transition-all`}

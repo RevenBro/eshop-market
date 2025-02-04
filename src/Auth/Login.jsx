@@ -89,12 +89,18 @@ const Login = () => {
           </motion.button>
         </form>
         <div className="mt-6 text-center text-white">
-          <p className="text-sm">
-            Hisobingiz yo'qmi?{' '}
-            <a href="/signup" className="text-teal-400 hover:underline">
-              Ro'yxatdan o'tish
-            </a>
-          </p>
+          <div className='flex  justify-center'>
+            <p className="text-sm">
+              <a href="/forgot-password" className="text-teal-400 hover:underline">
+                Parolni tiklash |
+              </a>
+            </p>
+            <p className="text-sm">
+              <a href="/signup" className="text-teal-400 hover:underline">
+                | Ro'yxatdan o'tish
+              </a>
+            </p>
+          </div>
           <button
               onClick={() => navigate('/')}
               className="mt-4 text-teal-400 hover:underline"
