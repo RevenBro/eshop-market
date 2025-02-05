@@ -8,6 +8,7 @@ import ProductsShop from './components/ProductsShop/ProductsShop'
 import Home from './components/Home/Home'
 import Login from './Auth/Login'
 import SignUp from './Auth/SignUp'
+import ForgotPassword from './Auth/ForgotPassword'
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -19,7 +20,7 @@ function App() {
   const location = useLocation()
   const [loggedIn, setLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
-  const isLoginPage = location.pathname === '/login' || location.pathname === '/signup';
+  const isLoginPage = location.pathname === '/login' || location.pathname === '/signup' || location.pathname === '/forgot-password';
 
   useEffect(() => {
     AOS.init({
@@ -52,6 +53,7 @@ function App() {
         <Route path='/shop' element={<ProductsShop/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<SignUp/>}/>
+        <Route path='/forgot-password' element={<ForgotPassword/>}/>
       </Routes>
 
       {!isLoginPage && <Footer/>}

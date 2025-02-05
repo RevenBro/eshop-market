@@ -21,7 +21,7 @@ const Login = () => {
       alert("Successfully");
       navigate("/");
     } catch (error) {
-      alert("Email yoki parol xato");
+      alert("Error: Foydalanuvchi topilmadi");
     }
   };
   

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Eye, EyeOff } from "lucide-react";
 import '../firebase/config'
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
@@ -7,8 +8,10 @@ import { useNavigate } from 'react-router-dom';
 const SignUp = ({username, setUsername}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [password2, setPassword2] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
 
   const navigate = useNavigate()
 
@@ -61,23 +64,44 @@ const SignUp = ({username, setUsername}) => {
           </div>
           <div className='space-y-2 pb-3'>
           <div className="relative">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full px-4 py-3 rounded-lg bg-transparent border border-white text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              placeholder="Parol"/>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        minLength={6}
+                        className="w-full px-4 py-3 rounded-lg bg-transparent border border-white text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                        placeholder="Parol"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute inset-y-0 right-3 flex items-center text-white hover:text-slate-200 focus:outline-none"
+                        tabIndex={0}
+                      >
+                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                      </button>
           </div>
 
-          <div className="relative ">
+          <div className="relative">
+                      <input
+                        type={showPassword2 ? "text" : "password"}
+                        value={password2}
+                        onChange={(e) => setPassword2(e.target.value)}
+                        required
+                        minLength={6}
+                        className="w-full px-4 py-3 rounded-lg bg-transparent border border-white text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                        placeholder="Parol"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword2(!showPassword2)}
+                        className="absolute inset-y-0 right-3 flex items-center text-white hover:text-slate-200 focus:outline-none"
+                        tabIndex={0}
+                      >
+                        {showPassword2 ? <EyeOff size={20} /> : <Eye size={20} />}
+                      </button>
           </div>
-            <input
-              type="password"
-              required
-              className="w-full px-4 py-3 rounded-lg bg-transparent border border-white text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              placeholder="Parolingizni qaytadan kiriting"
-            />
           </div>
           <motion.button
             onClick={signupHandler}

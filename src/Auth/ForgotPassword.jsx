@@ -1,30 +1,25 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
+import '../firebase/config'
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 
-const Login = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate()
+  console.log(email);
+  
 
-  const handleLogin = (e) => {
+  const handleForgotPassword = (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setErrorMessage('');
-
-    // Fake login logic
-    setTimeout(() => {
-      setIsSubmitting(false);
-      if (email !== 'test@example.com' || password !== 'password123') {
-        setErrorMessage('Noto‘g‘ri email yoki parol.');
-      }
-    }, 2000);
+    sendPasswordResetEmail(getAuth(), email)
+    .then(() => alert("Gmailni tekshiring"))
+    .catch(() => alert("Xatolik"))
   };
+  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
@@ -34,8 +29,8 @@ const Login = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        <h2 className="text-3xl font-bold text-white text-center mb-8">Kirish Sahifasi</h2>
-        <form onSubmit={handleLogin} className="space-y-6">
+        <h2 className="text-3xl font-bold text-white text-center mb-8">Parolni yangilash</h2>
+        <form onSubmit={handleForgotPassword} className="space-y-6">
           <div className="relative">
             <input
               type="email"
@@ -46,32 +41,13 @@ const Login = () => {
               placeholder="Email"
             />
           </div>
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              minLength={6}
-              className="w-full px-4 py-3 rounded-lg bg-transparent border border-white text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
-              placeholder="Parol"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute inset-y-0 right-3 flex items-center text-white hover:text-slate-200 focus:outline-none"
-              tabIndex={0}
-            >
-              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-            </button>
-          </div>
           {errorMessage && <p className="text-red-400 text-center">{errorMessage}</p>}
           <motion.button
             type="submit"
             className="w-full py-3 mt-4 rounded-lg bg-gradient-to-r from-teal-400 to-blue-600 text-white font-bold transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            disabled={isSubmitting}
+          isSubmitting
           >
             {isSubmitting ? (
               <div className='flex justify-center items-center'>
@@ -84,15 +60,15 @@ const Login = () => {
                 </div>
               </div>
             ) : (
-              'Kirish'
+              'Kod yuborish'
             )}
           </motion.button>
         </form>
         <div className="mt-6 text-center text-white">
           <div className='flex  justify-center'>
             <p className="text-sm">
-              <a href="/forgot-password" className="text-teal-400 hover:underline">
-                Parolni tiklash |
+              <a href="/login" className="text-teal-400 hover:underline">
+                Login sahifasi |
               </a>
             </p>
             <p className="text-sm">
@@ -113,4 +89,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;
