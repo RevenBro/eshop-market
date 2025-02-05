@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { LogOut, Settings, Sparkles, User } from "lucide-react";
+import { LogOut, Settings, Sparkles, User, MousePointer} from "lucide-react";
 import '../../firebase/config'
 import {getAuth, signOut} from 'firebase/auth'
 
-const Menu = () => {
+const Menu = ({admin}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLogout = () => {
@@ -14,7 +14,7 @@ const Menu = () => {
     setTimeout(() => {
       signOut(getAuth()).then(() => alert("Logged out")).catch((e) => alert(e.error))
     }, 800)
-  };
+  };  
 
   return (
     <div className="relative">
@@ -22,7 +22,7 @@ const Menu = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="w-10 h-10 flex items-center justify-center bg-gray-800 text-white rounded-full shadow-lg hover:bg-gray-700 transition-all"
       >
-        SA
+        U
       </button>
       {isOpen && (
         <motion.div
@@ -31,13 +31,25 @@ const Menu = () => {
           exit={{ opacity: 0, scale: 0.9, y: -10 }}
           className="absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200"
         >
-          <ul className="py-2">
-            <MenuItem icon={<User size={18} />} label="My Account" />
-            <MenuItem icon={<Sparkles size={18} />} label="Customize" />
-            <MenuItem icon={<Settings size={18} />} label="Settings" />
-            <div className="border-t border-gray-200 my-1"></div>
-            <MenuItem icon={<LogOut size={18} />} label="Log out" isDanger onClick={handleLogout} />
-          </ul>
+
+          {admin === 'admin@gmail.com' ? (
+            <ul className="py-2"> 
+              <MenuItem icon={<User size={18} />} label="My Account" />
+              <MenuItem icon={<Sparkles size={18} />} label="Customize" />
+              <MenuItem icon={<Settings size={18} />} label="Settings" />
+              <MenuItem icon={<MousePointer size={18} />} label="Add Product" />
+              <div className="border-t border-gray-200 my-1"></div>
+              <MenuItem icon={<LogOut size={18} />} label="Log out" isDanger onClick={handleLogout} />
+            </ul>
+            ) : 
+            <ul className="py-2"> 
+              <MenuItem icon={<User size={18} />} label="My Account" />
+              <MenuItem icon={<Sparkles size={18} />} label="Customize" />
+              <MenuItem icon={<Settings size={18} />} label="Settings" />
+              <div className="border-t border-gray-200 my-1"></div>
+              <MenuItem icon={<LogOut size={18} />} label="Log out" isDanger onClick={handleLogout} />
+            </ul>
+          }
         </motion.div>
       )}
     </div>

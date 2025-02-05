@@ -4,12 +4,12 @@ import DarkMode from '../DarkMode'
 import { FaCaretDown } from 'react-icons/fa'
 import RegisterButton from '../RegisterButton/RegisterButton'
 import { useNavigate } from 'react-router-dom'
+import '../../firebase/config'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 import UserProfile from '../UserProfile/UserProfile'
 
-const Navbar = ({loggedIn, username}) => {
-
-    console.log(username)
+const Navbar = ({loggedIn}) => {
 
     const MenuLinks = [
         {
@@ -56,6 +56,24 @@ const Navbar = ({loggedIn, username}) => {
             link: "/#"
         },
     ]
+
+    const [admin, setAdmin] = useState("");
+    const auth = getAuth();
+
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        if (user) {
+            setAdmin(user.email);
+        } else {
+            setAdmin("");
+        }
+      });
+    
+      return () => unsubscribe();
+    }, [admin]);
+
+    console.log(admin);
+    
 
   return (
     <div className='bg-white dark:bg-gray-900 dark:text-white duration-200 relative z-40'>
@@ -109,7 +127,7 @@ const Navbar = ({loggedIn, username}) => {
                     </div>
                     <div>
                         {loggedIn ? (
-                            <UserProfile/>
+                            <UserProfile admin={admin}/>
                         ) : (
                         <RegisterButton/>
                         )}

@@ -19,7 +19,7 @@ const SignUp = ({username, setUsername}) => {
   };
 
   const signupHandler = () => {
-    console.log(username, email, password);
+    console.log(email, password);
     createUserWithEmailAndPassword(getAuth(), email, password)
     .then(() => alert("Registered"))
     .catch((error) => alert("Xatolik" + error))
@@ -42,7 +42,7 @@ const SignUp = ({username, setUsername}) => {
             <input
               type="username"
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              // onChange={(e) => setUsername(e.target.value)}
               required
               className="w-full px-4 py-3 rounded-lg bg-transparent border border-white text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
               placeholder="Username"
