@@ -4,7 +4,7 @@ import './App.css'
 
 import Navbar from './components/Navbar/Navbar'
 import Footer from './components/Footer/Footer'
-import ProductsShop from './components/ProductsShop/ProductsShop'
+import ProductsShop from './pages/ProductsShop/ProductsShop'
 import Home from './components/Home/Home'
 import Login from './Auth/Login'
 import SignUp from './Auth/SignUp'

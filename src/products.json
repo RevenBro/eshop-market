@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "iPhone 13",
+    "price": 799,
+    "description": "Yangi iPhone 13 128GB",
+    "image": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1700000000/iphone13.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Samsung Galaxy S23",
+    "price": 999,
+    "description": "Galaxy S23 Ultra 256GB",
+    "image": "https://res.cloudinary.com/YOUR_CLOUD_NAME/image/upload/v1700000000/s23ultra.jpg"
+  }
+]

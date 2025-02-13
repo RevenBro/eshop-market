@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Eye, EyeOff } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
+import {Toaster, toast} from 'sonner'
 import '../firebase/config'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
@@ -17,17 +18,20 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(getAuth(), email, password);
-      alert("Successfully");
-      navigate("/");
+      await signInWithEmailAndPassword(getAuth(), email, password)
+      toast.success("Hisobingizga muvaffaqiyatli kirdingiz", {
+        duration: 5000
+      })
+      setTimeout(() => navigate("/"), 1500)
     } catch (error) {
-      alert("Error: Foydalanuvchi topilmadi");
+      toast.error("Xatolik: Foydalanuvchi topilmadi", { duration: 5000 });
     }
   };
   
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+      <Toaster position='top-right' richColors/>
       <motion.div
         className="bg-white bg-opacity-10 p-10 rounded-3xl shadow-2xl shadow-black/50 backdrop-blur-lg max-w-md w-full"
         initial={{ opacity: 0, y: -50 }}

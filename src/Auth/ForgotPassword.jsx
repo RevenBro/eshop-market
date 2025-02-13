@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import '../firebase/config'
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import { Toaster, toast } from 'sonner';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -16,13 +17,16 @@ const ForgotPassword = () => {
   const handleForgotPassword = (e) => {
     e.preventDefault();
     sendPasswordResetEmail(getAuth(), email)
-    .then(() => alert("Gmailni tekshiring"))
-    .catch(() => alert("Xatolik"))
+    .then(() => toast.info("Pochtangizni tekshiring", {
+      duration: 5000
+    }))
+    .catch((error) => toast.error(`Xatolik: ${error}`, { duration: 5000 }))
   };
   
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+      <Toaster position='top-right'/>
       <motion.div
         className="bg-white bg-opacity-10 p-10 rounded-3xl shadow-2xl shadow-black/50 backdrop-blur-lg max-w-md w-full"
         initial={{ opacity: 0, y: -50 }}

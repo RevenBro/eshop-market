@@ -4,6 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import '../firebase/config'
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'sonner';
 
 const SignUp = ({username, setUsername}) => {
   const [email, setEmail] = useState('');
@@ -24,14 +25,17 @@ const SignUp = ({username, setUsername}) => {
   const signupHandler = () => {
     console.log(email, password);
     createUserWithEmailAndPassword(getAuth(), email, password)
-    .then(() => alert("Registered"))
-    .catch((error) => alert("Xatolik" + error))
+    .then(() => setTimeout(() => navigate("/"), 2000),toast.success("Muvaffaqiyatli ro'yhatdan o'tdingiz", {
+      duration: 5000
+    }),
+    )
+    .catch((error) => toast.error(`Xatolik: ${error}`, { duration: 5000 }));
 
-    navigate("/")
   }
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
+      <Toaster position='top-right' richColors/>
       <motion.div
         className="bg-white bg-opacity-10 p-10 rounded-3xl shadow-2xl shadow-black/50 backdrop-blur-lg max-w-md w-full"
         initial={{ opacity: 0, y: -50 }}
