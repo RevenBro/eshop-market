@@ -33,6 +33,16 @@ const ProductsShop = () => {
       title: "AirPods",
       price: "149.99",
     },
+    {
+      image: "https://cdn.pixabay.com/photo/2014/07/31/23/10/apple-407124_1280.jpg",
+      title: "VR Headset",
+      price: "199.99",
+    },
+    {
+      image: "https://cdn.pixabay.com/photo/2014/07/31/23/10/apple-407124_1280.jpg",
+      title: "AirPods",
+      price: "149.99",
+    },
   ];
 
   return (
